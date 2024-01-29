@@ -8,10 +8,6 @@ Um simples e funcional sistema de pedidos online.
 - [Recursos](#recursos)
 - [Capturas de Tela](#capturas-de-tela)
 - [Demo](#demo)
-- [Como Usar](#como-usar)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
 
 ## Sobre
 
@@ -30,6 +26,5 @@ O PointFood é um sistema cardápio online desenvolvido para simplificar os pedi
 
 
 ## Demo
-
-Forneça um link para a demo ao vivo do seu site (se aplicável).
+Acesse o demo do projeto: https://pointfood.vercel.app
 

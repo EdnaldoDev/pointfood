@@ -12,8 +12,12 @@ export const Container=styled.main`
     }
     .snacks, .cartItems{
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        gap:1rem;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap:2rem;
+
+        img{
+            max-width: 90%;
+        }
     }
 
     .cartItems{

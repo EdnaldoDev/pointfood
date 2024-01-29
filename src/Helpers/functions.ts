@@ -7,7 +7,7 @@ export const formatcurrency=(value:number)=>{
     return formatoMoeda.format(value)
 }
 
-export const formatDate=(date:string)=>{
+export const formatDate=(date:any)=>{
     const dateFormat= new Intl.DateTimeFormat('pt-br',{
         dateStyle:"medium",
     })

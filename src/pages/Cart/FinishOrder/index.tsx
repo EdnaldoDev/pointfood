@@ -57,7 +57,7 @@ const handleSubmit=(event:React.FormEvent)=>{
 
   const mensagemEstabelecimento = encodeURIComponent(
     `*Novo pedido de ${formData.name}!*\n\n` +
-    `- Data: _${formatDate(new Date().toString())}_.\n`+
+    `- Data: _${formatDate(new Date())}_.\n`+
     '--------------------------------\n' +
     `*Número do pedido: ${13}*\n` +
     '--------------------------------\n' +

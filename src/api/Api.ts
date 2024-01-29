@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api=axios.create({
-    baseURL:'http://localhost:5173'
+    baseURL:import.meta.env.BASE_URL
 })
 
 export const getDrinks=async()=>{
