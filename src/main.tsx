@@ -12,7 +12,7 @@ import { CartProvider } from './context/cartContext.tsx'
 const queryClient= new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  <React.StrictMode> 
       <BrowserRouter>
           <Theme>
             <QueryClientProvider client={queryClient}>
