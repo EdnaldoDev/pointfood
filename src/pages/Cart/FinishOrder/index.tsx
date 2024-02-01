@@ -55,6 +55,7 @@ const handleSubmit=(event:React.FormEvent)=>{
     cashback: cashback,
   };
 
+
   const mensagemEstabelecimento = encodeURIComponent(
     `*Novo pedido de ${formData.name}!*\n\n` +
     `- Data: _${formatDate(new Date())}_.\n`+
@@ -62,7 +63,7 @@ const handleSubmit=(event:React.FormEvent)=>{
     `*Número do pedido: ${13}*\n` +
     '--------------------------------\n' +
     '*Itens do Pedido:*\n' +
-    items.map(item => `${item.name} - ${formatcurrency(item.price)}`).join('\n') +
+    items.map(item => `qtd ${item.quantity} X ${item.name} - ${formatcurrency(item.price)}`).join('\n') +
     '\n--------------------------------\n' +
     `*Entregar ou retirar:* ${deliveryMethod}\n` +
     '--------------------------------\n' +
@@ -90,25 +91,22 @@ const handleSubmit=(event:React.FormEvent)=>{
     items
   }))
 
-  window.open(`https://api.whatsapp.com/send/?phone=16997126087&text=${mensagemEstabelecimento}`, )
   
+  window.open(`https://api.whatsapp.com/send/?phone=16997126087&text=${mensagemEstabelecimento}`)
 }
-const handleCopy = () => {
-  // Your string
-  const stringToCopy = `00020126430014BR.GOV.BCB.PIX0121naldokinged@gmail.com5204000053039865802BR5925Ednaldo cavalcante serafi6011morro agudo62070503***6304E45E${total}6304AC`;
 
-  navigator.clipboard.writeText(stringToCopy)
-  .then(() => {
-    // Inform the user that the data has been copied
-    alert('Text copied to clipboard!');
-  })
-  .catch((err) => {
-    console.log(err)
-    alert('Unable to copy to clipboard');
-  });
-};
+async function handleCopy() {
+  const texto='Chabe pi'
+ 
+  
+    // Tenta usar a API navigator.clipboard
+    if (navigator.clipboard) {
+      await navigator.clipboard.writeText(texto);
+      alert('Texto copiado para a área de transferência!');
+    } 
+}
 
-  return (
+return(
     <div>
       <Modal
         open={open}
@@ -141,7 +139,7 @@ const handleCopy = () => {
               </FormControl>
 
               <div className='delivery-info'>
-                <h2>Informações para entrega</h2>
+                <h2>Informações </h2>
 
                 <FormGroup>
                     <InputLabel htmlFor="name">Nome</InputLabel>
@@ -202,7 +200,7 @@ const handleCopy = () => {
                   <FormControlLabel control={<Switch id='money'  checked={checkedMoney} onChange={handleChange} />} label="Dinheiro"  />
                   
                   {checkedPix &&(
-                    <button className='pix-copy' onClick={handleCopy}>
+                    <button type='button' className='pix-copy' onClick={handleCopy}>
                       Copiar codigo de pagamento
                     </button>
                    )

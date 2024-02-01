@@ -2,10 +2,9 @@
 import {useState, useContext} from 'react'
 
 import SnackItem from "../../components/ItemInCart/Mobile"
-import { Container } from "../Main/styles"
+import { Container } from "./styles"
 import { FinishOrder } from "./styles"
 import FinishOrderForm from './FinishOrder';
-import SnackItemDestok from '../../components/ItemInCart/Desktop';
 import { CartContext } from '../../context/cartContext';
 import { SnackData } from '../../types/SnackData';
 import { CartData } from '../../types/cartItems';
@@ -31,7 +30,7 @@ function Cart() {
           }
        </div>
 
-      {cartItems.length && <FinishOrder >
+      {cartItems.length > 0 && <FinishOrder >
           <div>
             Total <span>{formatcurrency(valuetotal)}</span>
           </div>

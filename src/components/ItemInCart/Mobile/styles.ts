@@ -1,15 +1,14 @@
 import { styled } from 'styled-components';
 export const Snack=styled.div`
-    flex:1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap:1.5rem;
     padding: .5rem 1rem;
+    margin: 1rem 0 ;
 
     background-color: #f24242;
 
-    min-height: 350px;
-    >div{
+
+    >div, >div:nth-child(2){
         flex: 1;
     }
 
@@ -36,6 +35,7 @@ export const Snack=styled.div`
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width:100%;
             
            >div:first-child{
                 flex: 1;
@@ -101,5 +101,11 @@ export const Snack=styled.div`
                 display: block;
             }
         }
+    }
+
+    @media screen and (max-width:720px){
+       display: block;
+        /* width: 80%; */
+        margin: 1rem auto;
     }
 `

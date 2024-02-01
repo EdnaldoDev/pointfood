@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Container= styled.div`
+
     h3{
         margin:1rem;
     }
@@ -34,4 +35,5 @@ export const Container= styled.div`
             }
         }
     }
+
 `

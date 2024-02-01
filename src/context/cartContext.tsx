@@ -2,6 +2,7 @@
 import React,{createContext, useState} from 'react'
 import { SnackData } from '../types/SnackData'
 import { CartData } from '../types/cartItems';
+import { toast } from 'react-toastify';
 
 interface CartContextProps{
     addToCart(item:Omit<CartData,'id'>):void;
@@ -31,7 +32,7 @@ export function CartProvider({children}:CartProviderProps){
         if(!isItemInTheCart){
             const newItems=[...cartItems, {...item, quantity:1, subtotal:item.price*1}]
             setCartItems(newItems)
-            alert('Item adiconado ao carrinho')
+            toast.success('Item adiconado ao carrinho')
         }else{
             const newItems=cartItems.map((cartItem)=>{
                 if(cartItem.id=== item.id && item.name === cartItem.name){
@@ -42,15 +43,10 @@ export function CartProvider({children}:CartProviderProps){
             })
 
             setCartItems(newItems)
-            alert('Quantidade atualizada!')
+            toast.success('Quantidade atualizada!')
 
         }
-        
-
-       
-
-        
-        
+                
     }
 
    const  removeFromCart=(id:any)=>{

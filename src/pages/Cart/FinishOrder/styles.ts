@@ -64,6 +64,12 @@ export const Box=styled.main`
 
     .pix-copy{
         padding:1rem;
+        border-radius:1rem;
+        border: none;
+
+        :hover{
+            filter:brightness(.8)
+        }
     }
 `
 

@@ -14,7 +14,7 @@ export const HeaderT = styled.header`
 
     position:fixed;
     top:0px;
-    left:1rem;
+    left:0;
     right:1rem;
 
     z-index: 214;

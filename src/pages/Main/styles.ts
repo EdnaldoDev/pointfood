@@ -10,7 +10,7 @@ export const Container=styled.main`
         border-bottom: 4px white solid;
         width: fit-content;
     }
-    .snacks, .cartItems{
+    .snacks{
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap:2rem;
@@ -18,10 +18,6 @@ export const Container=styled.main`
         img{
             max-width: 90%;
         }
-    }
-
-    .cartItems{
-        grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     }
 
     >div{

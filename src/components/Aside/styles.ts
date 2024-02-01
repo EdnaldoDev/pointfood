@@ -18,13 +18,13 @@ export const Container=styled.aside`
 
     nav{
         width: 100%;
-        height: 7rem;
+        height: 5rem;
         display: flex;
         justify-content: space-around;
         align-items: center;
 
 
-        font-size: 3rem;
+        font-size: 2.5rem;
 
         a.active{
             border-bottom: 4px solid rgb(252 196 25);
@@ -32,7 +32,7 @@ export const Container=styled.aside`
 
         }
     }
-
+ 
 
     @media(min-width:750px){
         left: 0px;

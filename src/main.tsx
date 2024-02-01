@@ -9,6 +9,10 @@ import {QueryClientProvider, QueryClient} from '@tanstack/react-query'
 import { SnackProvider } from './context/snacksContext.tsx'
 import { CartProvider } from './context/cartContext.tsx'
 
+import { ToastContainer } from 'react-toastify';
+
+  import 'react-toastify/dist/ReactToastify.css';
+
 const queryClient= new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -18,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <QueryClientProvider client={queryClient}>
               <CartProvider>
                 <App/>
+                <ToastContainer/>
               </CartProvider>
             </QueryClientProvider>
             <GlobalStyle/>
