@@ -7,6 +7,7 @@ import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel,
 import { useState } from 'react';
 import { CartData } from '../../../types/cartItems';
 import { formatDate, formatcurrency } from '../../../Helpers/functions';
+import { toast } from 'react-toastify';
 
 
 interface FinishOrderFormProps{
@@ -42,7 +43,7 @@ const handleChange=(event:React.ChangeEvent<HTMLInputElement>)=>{
   }
 }
 
-const handleSubmit=(event:React.FormEvent)=>{
+const handleSubmit=async(event:React.FormEvent)=>{
   event.preventDefault()
   const formData = {
     details: details,
@@ -54,31 +55,6 @@ const handleSubmit=(event:React.FormEvent)=>{
     reference: reference,
     cashback: cashback,
   };
-
-
-  const mensagemEstabelecimento = encodeURIComponent(
-    `*Novo pedido de ${formData.name}!*\n\n` +
-    `- Data: _${formatDate(new Date())}_.\n`+
-    '--------------------------------\n' +
-    `*Número do pedido: ${13}*\n` +
-    '--------------------------------\n' +
-    '*Itens do Pedido:*\n' +
-    items.map(item => `qtd ${item.quantity} X ${item.name} - ${formatcurrency(item.price)}`).join('\n') +
-    '\n--------------------------------\n' +
-    `*Entregar ou retirar:* ${deliveryMethod}\n` +
-    '--------------------------------\n' +
-    `\n*Total do Pedido:* ${formatcurrency(total)}\n` +
-    '--------------------------------\n' +
-    `*Observações:* ${formData.details}\n` +
-    '--------------------------------\n' +
-    '*Dados do cliente:*\n' +
-    `*Nome:* ${formData.name}\n` +
-    `*Telefone:* ${formData.phone}\n` +
-    `*Bairro:* ${formData.neighbor}\n` +
-    `*Endereço:* ${formData.address}, ${formData.complement}\n` +
-    'Obrigado! 🛒📞'
-  );
-  
   
   const regexNumeroTelefone = /^\d+$/;
   if (!regexNumeroTelefone.test(formData.phone)) {
@@ -91,8 +67,60 @@ const handleSubmit=(event:React.FormEvent)=>{
     items
   }))
 
-  
-  window.open(`https://api.whatsapp.com/send/?phone=16997126087&text=${mensagemEstabelecimento}`)
+ const req = await  fetch(`http://localhost:3001/app/new-order`,{
+    method:'post',
+    headers:{
+      'Authorization':'Bearer gordin.2024@_end',
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify(
+      {
+        token:'gordin.2024@_end',
+        deliveryMethod,
+        total,
+        customer:{
+          name:formData.name,
+          phone:formData.phone,
+          address:{
+            neighborhood:formData.neighbor,
+            street:formData.address,
+            complement:formData.complement
+          }
+        },
+        items:items.map((item)=>{
+          return {'qtd':item.quantity, 'itemId' : item._id}})
+      })
+  })
+
+  const res= await req.json()
+  if(req.status=== 201){
+
+      const mensagemEstabelecimento = encodeURIComponent(
+        `*Novo pedido de ${formData.name}!*\n\n` +
+        `- Data: _${formatDate(new Date())}_.\n`+
+        '--------------------------------\n' +
+        `*Id do pedido: ${res.orderId}*\n` +
+        '--------------------------------\n' +
+        '*Itens do Pedido:*\n' +
+        items.map(item => `qtd ${item.quantity} X ${item.name} - ${formatcurrency(item.price)}`).join('\n') +
+        '\n--------------------------------\n' +
+        `*Entregar ou retirar:* ${deliveryMethod}\n` +
+        '--------------------------------\n' +
+        `\n*Total do Pedido:* ${formatcurrency(total)}\n` +
+        '--------------------------------\n' +
+        `*Observações:* ${formData.details}\n` +
+        '--------------------------------\n' +
+        '*Dados do cliente:*\n' +
+        `*Nome:* ${formData.name}\n` +
+        `*Telefone:* ${formData.phone}\n` +
+        `*Bairro:* ${formData.neighbor}\n` +
+        `*Endereço:* ${formData.address}, ${formData.complement}\n` +
+        'Obrigado! 🛒📞'
+      );
+      
+      window.open(`https://api.whatsapp.com/send/?phone=16997126087&text=${mensagemEstabelecimento}`)
+          toast.success(res.text)
+  }
 }
 
 async function handleCopy() {

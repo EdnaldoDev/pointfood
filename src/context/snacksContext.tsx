@@ -1,6 +1,7 @@
 import React, {createContext, useEffect, useState}  from 'react'
 import { SnackData } from '../types/SnackData'
 import { getDrinks, getHamburger, getIcecream, getPizzas } from '../api/Api'
+import { useStoreData } from './storeContext'
 
 
 interface SnackContextProps{
@@ -16,44 +17,22 @@ interface SnackProviderProps{
     children: React.ReactNode;
 }
 export function SnackProvider({children}:SnackProviderProps){
-    const [burgers, setBurgers] =useState<SnackData[]>([])   
-    const [pizzas, setPizzas] =useState<SnackData[]>([])   
-    const [drinks, setDrinks] =useState<SnackData[]>([])   
-    const [sorvetes, setSorvetes] =useState<SnackData[]>([])   
-  
-  
+    const {storeData}=useStoreData()
+    const [cardapio, setCardapio]=useState([])
+    
     useEffect(()=>{
-      (async ()=>{  
-  
-        try{
-          const burgersReq= await getHamburger()
-          const pizzasReq= await   getPizzas()
-          const drinksReq= await getDrinks()
-          const sorvetesReq= await getIcecream()
-  
-          const requests=[  
-            burgersReq,pizzasReq,drinksReq,sorvetesReq
-          ]
-  
-          const [burgersData, pizzasData, drinksData, sorvetesData] = await Promise.all(requests)
-  
-  
-         
-  
-  
-          setBurgers(burgersData)
-          setPizzas(pizzasData)
-          setDrinks(drinksData)
-          setSorvetes(sorvetesData)
-  
-        }catch(err){
-          console.log(err)
+        if(storeData?.cardapio){
+                console.log(cardapio)
+        setCardapio(storeData.cardapio)
         }
-  
-      })()
     },[])
     return(
-        <SnackContext.Provider value={{burgers, pizzas, drinks, sorvetes}}>
+        <SnackContext.Provider value={{
+            burgers:cardapio.burgers,
+            pizzas: cardapio.pizzas,
+            drinks: cardapio.drinks,
+            sorvetes: cardapio.sorvetes
+         }}>
             {children}
         </SnackContext.Provider>
     )

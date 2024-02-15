@@ -12,6 +12,7 @@ import { CartProvider } from './context/cartContext.tsx'
 import { ToastContainer } from 'react-toastify';
 
   import 'react-toastify/dist/ReactToastify.css';
+import { StoreProvider } from './context/storeContext.tsx'
 
 const queryClient= new QueryClient()
 
@@ -20,10 +21,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <BrowserRouter>
           <Theme>
             <QueryClientProvider client={queryClient}>
-              <CartProvider>
-                <App/>
-                <ToastContainer/>
-              </CartProvider>
+              
+              <StoreProvider>
+                <CartProvider>
+                  <App/>
+                  <ToastContainer/>
+                </CartProvider>
+              </StoreProvider>
             </QueryClientProvider>
             <GlobalStyle/>
           </Theme>

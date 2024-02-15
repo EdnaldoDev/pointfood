@@ -7,14 +7,17 @@ import { HeaderT } from "./style";
 
  import {NavLink} from 'react-router-dom'
 import { CartContext } from "../../context/cartContext";
+import { useStoreData } from '../../context/storeContext';
 
 function Header(){
   const {cartItems}=useContext(CartContext)
+  const {storeData}=useStoreData()
+
   return (
     <HeaderT>
         <div>
-          <img src={logo} alt="Logo of site" />
-          <h4>PointFood</h4>
+          <img src={storeData.informacoes_negocio.logo} alt="Logo of site" />
+          <h4>{storeData.nome}</h4>
         </div>
 
         <NavLink to='/carrinho'>
