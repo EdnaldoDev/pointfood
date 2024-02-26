@@ -10,10 +10,24 @@ import Pizzas from "./pages/Main/Pizzas"
 import Drinks from "./pages/Main/Drinks"
 import IceCream from "./pages/Main/IceCream"
 import Cart from "./pages/Cart"
+import { useStoreData } from './context/storeContext'
 
-
+import Loading from './assets/loading.gif'
 function App() {
-  const isLogged= true
+  const {storeData}=useStoreData()
+  console.log(storeData)
+
+  if(storeData.length<=0){
+    return (
+      <h1 style={{
+        position:'absolute',
+        top: '50%',
+        left: '40%',
+      }}>
+        Carregando...
+      </h1>
+    )
+  }
  
   return (
    <>
@@ -21,7 +35,7 @@ function App() {
     <Routes>
         <Route path='/' element={<MainPage/>}>
           <Route path="/" element={<Hamburgers/>}/>
-          <Route path="//pizzas" element={<Pizzas  />}/>
+          <Route path="/pizzas" element={<Pizzas  />}/>
           <Route path="/sorvetes" element={<IceCream />}/>
           <Route path="/bebidas" element={<Drinks/>}/>
         </Route>

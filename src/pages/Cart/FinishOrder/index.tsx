@@ -67,10 +67,10 @@ const handleSubmit=async(event:React.FormEvent)=>{
     items
   }))
 
- const req = await  fetch(`http://localhost:3001/app/new-order`,{
+ const req = await  fetch(`${import.meta.env.VITE_BASE_URL}app/new-order`,{
     method:'post',
     headers:{
-      'Authorization':'Bearer gordin.2024@_end',
+      'Authorization':`Bearer ${import.meta.env.VITE_BASE_URL}`,
       'Content-Type':'application/json'
     },
     body:JSON.stringify(

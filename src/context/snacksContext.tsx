@@ -31,7 +31,7 @@ export function SnackProvider({children}:SnackProviderProps){
             burgers:cardapio.burgers,
             pizzas: cardapio.pizzas,
             drinks: cardapio.drinks,
-            sorvetes: cardapio.sorvetes
+            sorvetes: cardapio.icecreams
          }}>
             {children}
         </SnackContext.Provider>

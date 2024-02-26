@@ -18,18 +18,13 @@ export function StoreProvider({children}:StoreProviderProps){
   
     useEffect(()=>{
       (async ()=>{  
-  
         try{
-         const req= await fetch('http://localhost:3001/app/products', {
+          const req= await fetch(`${import.meta.env.VITE_BASE_URL}app/products`, {
             method:'get',
-            headers:{'Authorization':'Bearer gordin.2024@_end'}
+            headers:{'Authorization':`Bearer ${import.meta.env.VITE_STORE_TOKEN}`}
           })
-         const {restaurante} = await req.json()
-          console.log(restaurante)
-
-          setStoreData(restaurante)
-         
-  
+          const {restaurantData} = await req.json()
+          setStoreData(restaurantData)
         }catch(err){
           alert(err)
         }

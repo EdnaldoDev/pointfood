@@ -21,6 +21,21 @@ function Drinks() {
 
                     ))
                 }
+            {!drinks &&
+                    [1,2,3,4,5,6,7,8].map(item=>(
+                        <div key={item}>
+                            <Skeleton type='title'/>
+                            <Skeleton type='thumbnail'/>
+                            <Skeleton type='text'/>
+                            <Skeleton type='text'/>
+                            <div className='d-flex'>
+                                <Skeleton type='title'/>
+                                <Skeleton type='image'/>
+                            </div>
+                        </div>
+
+                    ))
+                }
         </div>
     </Container>
   )
