@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 
 import Header from "./components/Header"
 
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, Redirect} from 'react-router-dom'
 import MainPage from "./pages/Main/Main"
 import Aside from "./components/Aside"
 import Cart from "./pages/Cart"
@@ -30,11 +30,10 @@ function App() {
    <>
     <Header/>
     <Routes>
-        <Route path='/' element={<MainPage/>}>
+        <Route path="/" element={<MainPage/>}>
           <Route path="/:category" element={<ProductList/>}/>
         </Route>
         <Route path='/carrinho' element={<Cart/>}/>
-
       </Routes>
 
       <Aside/>
