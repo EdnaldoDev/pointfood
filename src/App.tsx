@@ -5,17 +5,12 @@ import Header from "./components/Header"
 import {Routes, Route} from 'react-router-dom'
 import MainPage from "./pages/Main/Main"
 import Aside from "./components/Aside"
-import Hamburgers from "./pages/Main/Hamburger"
-import Pizzas from "./pages/Main/Pizzas"
-import Drinks from "./pages/Main/Drinks"
-import IceCream from "./pages/Main/IceCream"
 import Cart from "./pages/Cart"
 import { useStoreData } from './context/storeContext'
+import ProductList from './pages/Main/productList'
 
-import Loading from './assets/loading.gif'
 function App() {
   const {storeData}=useStoreData()
-  console.log(storeData)
 
   if(storeData.length<=0){
     return (
@@ -28,16 +23,15 @@ function App() {
       </h1>
     )
   }
+
+  document.title=storeData?.nome + " | Seu cardapio digital"
  
   return (
    <>
     <Header/>
     <Routes>
         <Route path='/' element={<MainPage/>}>
-          <Route path="/" element={<Hamburgers/>}/>
-          <Route path="/pizzas" element={<Pizzas  />}/>
-          <Route path="/sorvetes" element={<IceCream />}/>
-          <Route path="/bebidas" element={<Drinks/>}/>
+          <Route path="/:category" element={<ProductList/>}/>
         </Route>
         <Route path='/carrinho' element={<Cart/>}/>
 

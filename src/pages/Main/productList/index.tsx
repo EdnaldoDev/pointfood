@@ -3,25 +3,25 @@ import Skeleton from "../../../components/Skeleton"
 import { Container } from "../styles"
 import { SnackData } from "../../../types/SnackData"
 import Snack from "../../../components/Snack"
-import { SnackContext } from "../../../context/snacksContext"
+import { useLocation} from "react-router-dom"
+import { useStoreData } from "../../../context/storeContext"
 
-interface DrinksProps {
-    snacks: SnackData[]
-}
-function Drinks() {
-   const {drinks}=useContext(SnackContext)
-   
+function ProductList() {
+    const {storeData}=useStoreData()
+    const location=useLocation()
+    const path= location.pathname.slice(1)
+
   return (
     <Container>
-        <h2>Bebidas</h2>
+        <h2>{path.charAt(0).toLocaleUpperCase() + path.slice(1).toLocaleLowerCase()}</h2>
         <div className='snacks'>
-            {drinks &&
-                    drinks.map(item=>(
+             {storeData?.cardapio &&
+                    storeData?.cardapio[path].map(item=>(
                         <Snack key={item.id} snack={item}/>
 
                     ))
                 }
-            {!drinks &&
+                {!storeData.cardapio &&
                     [1,2,3,4,5,6,7,8].map(item=>(
                         <div key={item}>
                             <Skeleton type='title'/>
@@ -41,15 +41,4 @@ function Drinks() {
   )
 }
 
-export default Drinks
-
-{/* <div key={item}>
-                            <Skeleton type='title'/>
-                            <Skeleton type='thumbnail'/>
-                            <Skeleton type='text'/>
-                            <Skeleton type='text'/>
-                            <div className='d-flex'>
-                                <Skeleton type='title'/>
-                                <Skeleton type='image'/>
-                            </div>
-                        </div> */}
+export default ProductList

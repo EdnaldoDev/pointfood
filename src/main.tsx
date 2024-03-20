@@ -24,7 +24,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               
               <StoreProvider>
                 <CartProvider>
-                  <App/>
+                  <SnackProvider>
+                    <App/>
+                  </SnackProvider>
                   <ToastContainer/>
                 </CartProvider>
               </StoreProvider>

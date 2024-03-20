@@ -38,6 +38,6 @@ export const Container=styled.main`
 
     
     @media(min-width:750px){
-        margin-left: 6rem;
+        margin-left: 8rem;
     }
 `

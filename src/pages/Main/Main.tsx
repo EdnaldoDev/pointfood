@@ -1,11 +1,12 @@
-import {Outlet} from 'react-router-dom'
 import { SnackProvider } from '../../context/snacksContext'
+import ProductList from './productList'
 
 function MainPage() {
   return (
     <SnackProvider>
      
-      <Outlet/>
+     <ProductList/>
+      {/* <Outlet/> */}
     </SnackProvider>
   )
 }
