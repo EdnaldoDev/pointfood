@@ -70,12 +70,11 @@ const handleSubmit=async(event:React.FormEvent)=>{
  const req = await  fetch(`${import.meta.env.VITE_BASE_URL}app/new-order`,{
     method:'post',
     headers:{
-      'Authorization':`Bearer ${import.meta.env.VITE_BASE_URL}`,
+      'Authorization':`Bearer ${import.meta.env.VITE_STORE_TOKEN}`,
       'Content-Type':'application/json'
     },
     body:JSON.stringify(
       {
-        token:'gordin.2024@_end',
         deliveryMethod,
         total,
         customer:{
@@ -89,7 +88,8 @@ const handleSubmit=async(event:React.FormEvent)=>{
         },
         items:items.map((item)=>{
           return {'qtd':item.quantity, 'itemId' : item._id}})
-      })
+      }
+    )
   })
 
   const res= await req.json()

@@ -17,33 +17,34 @@ export default function SnackItem({snack}:SnackItemProps) {
 
     const [qtd, setQtd]=useState(snack.quantity)
 
-    const increment=()=>{
-        
-        setQtd(qtd+1)
-
-        let updatedItems=cartItems.map((item)=> {
-            if(item.id===snack.id && item.name===snack.name){
-                item.quantity=qtd+1
-                item.subtotal=item.quantity*item.price
+    const increment = () => {
+        setQtd(prevQtd => prevQtd + 1); // Usa a função de callback do setQtd para garantir que estamos atualizando o estado com base no valor anterior de qtd
+    
+        let updatedItems = cartItems.map((item) => {
+            if (item.id === snack.id && item.name === snack.name) {
+                item.quantity = qtd + 1; // Usa qtd + 1, pois setQtd ainda não atualizou o estado
+                item.subtotal = item.quantity * item.price;
             }
-            return item
-        })
-        setCartItems(updatedItems)
-        
-    }
-    const decrement=()=>{
-        setQtd(qtd-1)
-
-        let updatedItems=cartItems.map((item)=> {
-            if(item.id===snack.id && item.name===snack.name){
-                item.quantity=qtd-1
-                item.subtotal=item.quantity*item.price
-            }
-            return item
-        })
-        setCartItems(updatedItems)
-    }
-
+            return item;
+        });
+        setCartItems(updatedItems);
+    };
+    
+    const decrement = () => {
+        if (qtd > 0) {
+            setQtd(prevQtd => prevQtd - 1); // Usa a função de callback do setQtd para garantir que estamos atualizando o estado com base no valor anterior de qtd
+    
+            let updatedItems = cartItems.map((item) => {
+                if (item.id === snack.id && item.name === snack.name) {
+                    item.quantity = qtd - 1; // Usa qtd - 1, pois setQtd ainda não atualizou o estado
+                    item.subtotal = item.quantity * item.price;
+                }
+                return item;
+            });
+            setCartItems(updatedItems);
+        }
+    };
+    
 
 
   return (
@@ -54,12 +55,12 @@ export default function SnackItem({snack}:SnackItemProps) {
 
         <div>
             <strong>{snack.name}</strong>
-            <p>R$ {snack.price}</p>
+            <p>{formatcurrency(snack.price)}</p>
 
             <div  className='actions'>
                 <div>
                     <button type="button" onClick={decrement}>-</button>
-                    <input type="number" readOnly value={qtd} min={0} />
+                    <input type="number"  value={qtd} readOnly min={0}/>
                     <button type="button" onClick={increment}>+</button>
                 </div>
                 <div>
