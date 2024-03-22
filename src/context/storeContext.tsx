@@ -26,8 +26,8 @@ export function StoreProvider({children}:StoreProviderProps){
               "Access-Control-Allow-Origin":"*"
             }
           })
-          const {restaurantData} = await req.json()
-          setStoreData(restaurantData)
+          const data= await req.json()
+          setStoreData(data)
         }catch(err){
           alert(err)
         }

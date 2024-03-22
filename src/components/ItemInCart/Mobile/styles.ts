@@ -5,7 +5,7 @@ export const Snack=styled.div`
     padding: .5rem 1rem;
     margin: 1rem 0 ;
 
-    background-color: #f24242;
+    background-color: inherit;
 
 
     >div, >div:nth-child(2){

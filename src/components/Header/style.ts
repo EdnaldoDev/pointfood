@@ -64,6 +64,6 @@ export const HeaderT = styled.header`
     }
 
     @media(min-width:750px){
-        margin-left: 6rem;
+        margin-left: 9rem;
     }
 `

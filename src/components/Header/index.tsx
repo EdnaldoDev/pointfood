@@ -16,8 +16,8 @@ function Header(){
   return (
     <HeaderT>
         <div>
-          <img src={storeData.informacoes_negocio.logo} alt="Logo of site" />
-          <h4>{storeData.nome}</h4>
+          {/* <img src={storeData && storeData.informacoes_negocio.logo} alt="Logo of site" /> */}
+          <h4>{storeData?.nome}</h4>
         </div>
 
         <NavLink to='/carrinho'>

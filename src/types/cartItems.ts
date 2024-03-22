@@ -4,5 +4,6 @@ export interface CartData{
     name:string
     price:number
     quantity:number
-    subtotal:number
+    subtotal:number,
+    snack:string
 }

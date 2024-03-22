@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 export const Container=styled.main`
    
     position:relative;
-    margin:8rem 0;
+    padding:8rem 0;
 
     h2{
         margin: 2rem;
@@ -38,6 +38,6 @@ export const Container=styled.main`
 
     
     @media(min-width:750px){
-        margin-left: 8rem;
+        margin-left: 9rem;
     }
 `

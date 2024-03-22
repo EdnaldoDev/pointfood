@@ -9,6 +9,8 @@ import { CartContext } from '../../context/cartContext';
 import { SnackData } from '../../types/SnackData';
 import { CartData } from '../../types/cartItems';
 import { formatcurrency } from '../../Helpers/functions';
+import { NavLink } from 'react-router-dom';
+import { MdArrowBack } from 'react-icons/md';
 
 function Cart() {
   const [open, setOpen] = useState(false);
@@ -21,6 +23,8 @@ function Cart() {
 
   return (
     <Container>
+      <NavLink to='/'><MdArrowBack size={30}/>Voltar</NavLink>
+
        <div className='cartItems'>
         {cartItems.length ?
             cartItems.map((snack:CartData)=>(

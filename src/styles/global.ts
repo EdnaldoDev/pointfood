@@ -13,7 +13,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background:#e03131;
     color: ${(props) => props.theme.colors.white};
     font-family: ${(props) => props.theme.fontFamily.sans};
     margin: 0px;

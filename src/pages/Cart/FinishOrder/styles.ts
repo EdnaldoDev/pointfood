@@ -6,24 +6,30 @@ export const Box=styled.main`
      height: 80vh;
      padding:2rem;
      margin: 2rem;
-    background-color: rgba(238, 204,204, 1);
+    background-color: rgba(0,0,0,.9);
 
-    color:#00000099;
+    color:inherit;
 
     overflow-y: scroll;
 
-    
+    input{
+        border:1px solid white;
+        color:wheat
+    }
 
     .details{
         margin:1rem 0;
     }
 
+    label{
+        color:inherit
+    }
+
     .delivery-info{
-        
 
         button{
-            background-color: #c00;
-            color:white;
+            background-color: white;
+            color:black;
             margin:1rem auto;
 
             &+button{

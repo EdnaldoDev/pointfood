@@ -4,8 +4,6 @@ import ProductList from './productList'
 import {useLocation} from 'react-router-dom'
 
 function MainPage() {
-  const {pathname}=useLocation()
-
   return ( 
     <SnackProvider>
      

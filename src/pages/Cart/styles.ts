@@ -2,12 +2,16 @@ import { styled } from 'styled-components';
 
 export const Container= styled.main`
    position: relative;
-    margin: 8rem 1rem;
+    padding: 7rem 1rem;
 
-    
+    >a{
+        display:flex;
+        justify-content: end;
+        align-items: center;
+    }
 
     @media screen and (min-width:720px){
-        margin-left: 7rem;
+        margin-left: 10rem;
         .cartItems{
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
@@ -24,9 +28,9 @@ export const FinishOrder=styled.section`
         display: flex;
         justify-content: space-around;
         align-items: center;
-        background-color:#f24242;
+        background-color:inherit;
         margin-top: 2rem;
-
+        border: 2px silver solid;
 
         h1{
             margin: 0 1rem;
@@ -40,10 +44,14 @@ export const FinishOrder=styled.section`
 
         button{
             padding: 1rem 1.5rem;
-            color:#f24242;
+            color:inherit;
             background-color: white;
             border:none;
-            font-weight: bold;
+            font-weight: bolder;
+
+            &:hover{
+                filter: brightness(.1);
+            }
         }
 
         @media screen and (max-width: 720px) {

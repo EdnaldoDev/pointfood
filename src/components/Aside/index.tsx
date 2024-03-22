@@ -1,7 +1,7 @@
 
 import { Container } from './styles'
 
-import {NavLink, useNavigate} from 'react-router-dom'
+import {NavLink, useLocation, useNavigate} from 'react-router-dom'
 import {FaHamburger, FaPizzaSlice } from 'react-icons/fa'
 import {LuIceCream2} from 'react-icons/lu'
 import {MdOutlineLocalDrink} from 'react-icons/md'
@@ -13,6 +13,9 @@ function Aside() {
     const {storeData:{cardapio}} = useStoreData()
     
     const navigate = useNavigate();
+    const pathname = useLocation().pathname.split('/')[1]
+
+    console.log(pathname)
 
     const handleSelectChange = (event) => {
         const selectedItem = event.target.value;
@@ -29,18 +32,9 @@ function Aside() {
                     </NavLink>
                 ))
             }
-            {/* <NavLink to='/pizzas'>
-                <FaPizzaSlice/>
-            </NavLink>
-            <NavLink to='/sorvetes'>
-                <LuIceCream2/>
-            </NavLink>
-            <NavLink to='/bebidas'>
-                <MdOutlineLocalDrink/>
-            </NavLink> */}
         </nav>
 
-        <select onChange={handleSelectChange}>
+        <select onChange={handleSelectChange} value={pathname ? pathname : 'burgers'}>
                 {
                     Object.entries(cardapio).map(([item,value], index )=>(
                        <option value={item}>

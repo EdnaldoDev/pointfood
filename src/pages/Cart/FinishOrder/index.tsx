@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { CartData } from '../../../types/cartItems';
 import { formatDate, formatcurrency } from '../../../Helpers/functions';
 import { toast } from 'react-toastify';
+import { useStoreData } from '../../../context/storeContext';
 
 
 interface FinishOrderFormProps{
@@ -18,6 +19,8 @@ interface FinishOrderFormProps{
 }
 
 export default function FinishOrderForm({open, handleClose, items, total}:FinishOrderFormProps) {
+  const {storeData:{informacoes_negocio}}=useStoreData()
+  
   const [deliveryMethod, setDeliveryMethod]=useState('entrega')
 
   const [checkedMoney, setCheckedMoney]=useState(false)
@@ -87,7 +90,7 @@ const handleSubmit=async(event:React.FormEvent)=>{
           }
         },
         items:items.map((item)=>{
-          return {'qtd':item.quantity, 'itemId' : item._id}})
+          return {'qtd':item.quantity, 'itemId' : item._id, 'snack':item.snack}})
       }
     )
   })
@@ -124,7 +127,7 @@ const handleSubmit=async(event:React.FormEvent)=>{
 }
 
 async function handleCopy() {
-  const texto='Chabe pi'
+  const texto=`00020126580014BR.GOV.BCB.PIX0136dc1cae9b-bcbb-4740-9f9b-e6072e50cfd2520400005303986540${total}5802BR5925Ednaldo Cavalcante Serafi6009SAO PAULO62140510DXt3WLuqqx63049C63`
  
   
     // Tenta usar a API navigator.clipboard
@@ -171,12 +174,12 @@ return(
 
                 <FormGroup>
                     <InputLabel htmlFor="name">Nome</InputLabel>
-                    <TextField required value={name} onChange={(e)=>setName(e.target.value)}/>
+                    <TextField placeholder='Digite o seu nome' required value={name} onChange={(e)=>setName(e.target.value)}/>
                 </FormGroup>
 
                 <FormGroup>
                     <InputLabel htmlFor="cellphone">Celular</InputLabel>
-                    <TextField required type='tel' value={phone} onChange={(e)=>setPhone(e.target.value)} />
+                    <TextField placeholder='Digite o seu celular'  required type='tel' value={phone} onChange={(e)=>setPhone(e.target.value)} />
                 </FormGroup>
 
                 <div>
@@ -215,9 +218,9 @@ return(
               <div className='values-infos'>
                 <h3>Resumo dos valores</h3>
                 <p>Subtotal <span>{formatcurrency(total)}</span></p>
-                <p>Taxa de entrega  <span>{deliveryMethod ==='entregar' ? 'R$1,00' :'R$0,00'}</span></p>
+                <p>Taxa de entrega  <span>{deliveryMethod ==='entregar' ? formatcurrency(informacoes_negocio.deliveryTax) :'R$0,00'}</span></p>
                 <hr/>
-                <p>Total <span>{deliveryMethod ==='entregar' ? formatcurrency(total+1) : formatcurrency(total)}</span></p>
+                <p>Total <span>{deliveryMethod ==='entregar' ? formatcurrency(total+ Number(informacoes_negocio.deliveryTax)) : formatcurrency(total)}</span></p>
               </div>
 
               <div className='payment-info'>
