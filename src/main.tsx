@@ -27,7 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                   <SnackProvider>
                     <App/>
                   </SnackProvider>
-                  <ToastContainer/>
+                  <ToastContainer style={{left:'20%'}}/>
                 </CartProvider>
               </StoreProvider>
             </QueryClientProvider>

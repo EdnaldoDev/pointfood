@@ -44,13 +44,13 @@ export const FinishOrder=styled.section`
 
         button{
             padding: 1rem 1.5rem;
-            color:inherit;
+            color:calc(inherit + 0);
             background-color: white;
             border:none;
             font-weight: bolder;
 
             &:hover{
-                filter: brightness(.1);
+                filter: brightness(.9);
             }
         }
 

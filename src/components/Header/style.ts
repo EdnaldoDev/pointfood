@@ -38,6 +38,10 @@ export const HeaderT = styled.header`
     a{
         position: relative;
 
+        +a{
+            margin-left: 2rem;
+        }
+
         .bedge{
             background-color: white;
             width:1.2rem;

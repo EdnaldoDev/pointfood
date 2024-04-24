@@ -11,6 +11,7 @@ import ProductList from './pages/Main/productList'
 import styled from 'styled-components'
 
 const Div = styled.div`
+  min-height: 100vh;
   background-color: ${(props)=>props.bgcolor};
   color:${(props)=>props.fontcolor};
   header{
@@ -47,6 +48,7 @@ function App() {
           <Route path="/:category" element={<ProductList/>}/>
         </Route>
         <Route path='/carrinho' element={<Cart/>}/>
+
       </Routes>
 
       <Aside/>
