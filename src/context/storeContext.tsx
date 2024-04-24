@@ -22,7 +22,7 @@ interface StoreProviderProps{
 
 export function StoreProvider({children}:StoreProviderProps){
    const [storeData, setStoreData]=useState<any[]>([])
-   const socket= io('http://localhost:3001')
+   const socket= io(import.meta.env.VITE_BASE_URL)
 
    const joinRoom=(id)=>{
     socket.emit('connected', id);
