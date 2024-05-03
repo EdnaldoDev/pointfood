@@ -9,7 +9,7 @@ import { CartData } from '../../../types/cartItems';
 import { formatDate, formatcurrency } from '../../../Helpers/functions';
 import { toast } from 'react-toastify';
 import { useStoreData } from '../../../context/storeContext';
-import { newOrderEvent } from '../../../Helpers/socketEvents';
+import { newOrderEvent } from '../../../Helpers/socketEvents.ts';
 import { CartContext } from '../../../context/cartContext';
 import InputMask from 'react-input-mask';
 
