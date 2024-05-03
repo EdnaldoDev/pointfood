@@ -32,11 +32,11 @@ export function StoreProvider({children}:StoreProviderProps){
       (async ()=>{  
         try{
           const req= await fetch(`${import.meta.env.VITE_BASE_URL}app/products`, {
-            method:'get',
+            method:'post',
             headers:{
-              'Authorization':`Bearer ${import.meta.env.VITE_STORE_TOKEN}`,
-              "Access-Control-Allow-Origin":"*"
-            }
+              'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({_id:import.meta.env.VITE_BASE_URL})
           })
           const data= await req.json()
           setStoreData(data)
