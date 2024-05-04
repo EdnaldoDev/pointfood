@@ -36,7 +36,7 @@ export function StoreProvider({children}:StoreProviderProps){
             headers:{
               'Content-Type': 'application/json'
             },
-            body:JSON.stringify({_id:import.meta.env.VITE_BASE_URL})
+            body:JSON.stringify({_id:import.meta.env.VITE_STORE_TOKEN})
           })
           const data= await req.json()
           setStoreData(data)
