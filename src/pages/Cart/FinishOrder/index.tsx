@@ -12,7 +12,6 @@ import { useStoreData } from '../../../context/storeContext';
 // import { newOrderEvent } from '../../../Helpers/socketEvents';
 import { CartContext } from '../../../context/cartContext';
 import InputMask from 'react-input-mask';
-import { newOrderEvent } from '../../../Helpers/socketEvents';
 
 interface FinishOrderFormProps {
   open: boolean
@@ -48,6 +47,11 @@ export default function FinishOrderForm({ open, handleClose, items, total }: Fin
       setCheckedPix(false)
     }
   }
+
+  const newOrderEvent=async (data:any)=>{
+    socket.emit('new-order', data);
+    
+}
 
   const handleSubmit = async (event: React.FormEvent) => {
     setIsLoading(true)
